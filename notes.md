@@ -10,8 +10,18 @@
 
 ## AWS
 
-My IP address is: 54.81.96.130
-Launching my AMI I initially put it on a private subnet. Even though it had a public IP address and the security group was right, I wasn't able to connect to it.
+My IP address is: 192.168.0.110.
+No problems, I created my AWS account and chose the free plan. 
+
+## Markdown
+There are many styles that can be used to organize files and notes.
+### Style examples:
+- Bold: ** ** or __ __ (**This is bold**)
+- Italic: * *  or _ _ (_This is italics_)
+- Strikethrough: ~~ ~~ or ~ ~ (~This is strikethrough~)
+
+Links can also be created to send a user to another site or download a file. To find out more specifics about Markup, follow [this link](https://docs.github.com/en/get-started/writing-on-github/getting-started-with-writing-and-formatting-on-github/basic-writing-and-formatting-syntax).
+
 
 ## Caddy
 
