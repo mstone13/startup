@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Daily Planner</title>
+    <link rel="icon" href="favicon.ico" />
+  </head>
+  <body>
+    <header style="background-color: powderblue; display: flex; justify-content: space-between; align-items: center; padding: 10px;">
+
+  <div style="display: flex; align-items: center; gap: 10px;">
+    <h1 style="margin: 0;">My Planner</h1>
+
+    <div>
+      <b>LOG IN to save events:</b>
+      <input type="text" placeholder="your@email.com" />
+      <input type="password" placeholder="password" />
+      <button type="submit">Login</button>
+      <button type="submit">Create</button>
+    </div>
+  </div>
+
+        <menu>
+          <li><a href="index.html">Home</a></li>
+          <li><a href="to_do_list.html">To-Do List</a></li>
+          <li><a href="account.html">My Account</a></li>
+          <li><a href="other_users.html">Friends</a></li>
+        </menu>
+      </nav>
+
+  <div id="websocket-placeholder" style="border: 2px dashed gray; padding: 10px; width: 200px; height: 50px; text-align: center; margin-left: 40px">
+    *Notifications / Interuser communication*
+  </div>
+
+      
+      <hr />
+    </header>
+
+    <main style="background-color: rgb(79, 139, 172)">
+      <h2>Today: Wednesday, September 24th</h2>
+      <form method="get" action="play.html">
+
+<div style="display: flex; align-items: flex-start; gap: 20px;">
+
+<table border="1">
+  <tr>
+    <th>Time</th>
+    <th>Event</th>
+    <th>Event</th>
+  </tr>
+  <tr>
+    <td>6:00 AM</td>
+    <td><input type="text" placeholder="Enter event"></td>
+    <td><input type="text" placeholder="Enter event"></td>
+  </tr>
+  <tr>
+    <td>7:00 AM</td>
+    <td><input type="text" placeholder="Enter event"></td>
+    <td><input type="text" placeholder="Enter event"></td>
+  </tr>
+  <tr>
+    <td>8:00 AM</td>
+    <td><input type="text" placeholder="Enter event"></td>
+    <td><input type="text" placeholder="Enter event"></td>
+  </tr>
+  <tr>
+    <td>9:00 AM</td>
+    <td><input type="text" placeholder="Enter event"></td>
+    <td><input type="text" placeholder="Enter event"></td>
+  </tr>
+</table>
+
+<div>
+<img src="calendar-icon.png" alt="calendar" width="140">
+</div>
+
+</div>
+
+<div id="location-placeholder" style="border: 2px dashed black; padding: 15px; margin-top: 20px; text-align: center;">
+  <h3>Event Location Placeholder</h3>
+  <p>Map or location info will appear here for select events in the future.</p>
+  <button disabled>Set Location (API Placeholder)</button>
+</div>
+
+    </main>
+
+    <footer>
+      <hr />
+      <span class="text-reset">Megan Stone</span>
+      <br />
+      <a href="https://github.com/mstone13/html-startup.git">GitHub</a>
+    </footer>
+  </body>
+</html>
