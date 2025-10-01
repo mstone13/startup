@@ -61,8 +61,6 @@ nav ul {
     margin: 15px 0 0 0;
 }
 
-
-
 .login-box{
     background: powderblue;
     padding: 10px 15px;
@@ -92,7 +90,6 @@ nav ul {
     border-radius: 4px;
     padding: 6px 10px;
     cursor: pointer;
-    
 }
 
 .login-box button:hover {
@@ -147,7 +144,16 @@ table {
     max-height: 500px;
     overflow: auto;
     border: 1px solid #ccc;
-    border-radius: 8px
+    border-radius: 8px;
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    gap: 20px;
+    
+}
+
+.calendar {
+  flex: 1;
 }
 
 .calendar-container thead th{
@@ -221,3 +227,12 @@ tr:nth-child(even) {
 #location-placeholder {
     text-align: center;
 }
+
+.image {
+  width: 25%;
+  min-width: 500px;
+  max-width: 1000px;
+  height: auto;
+  margin-left: 5px;
+  border-radius: 25px;
+  }
