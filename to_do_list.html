@@ -4,6 +4,7 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>To-Do List</title>
+    <link rel="stylesheet" href="to_do_list.css"
     <link rel="icon" href="favicon.ico" />
   </head>
   <body>
@@ -26,32 +27,36 @@
       <hr />
     </header>
 
-    <main style="background-color: rgb(79, 139, 172);">
-      <h2>Class To-Do Lists:</h2>
+    <main>
+  <h2>Class To-Do Lists:</h2>
 
-      <div style="width: 33%; display: inline-block; vertical-align: top;">
-        <input type="text" value="Class 1" style="width: 100%; font-weight: bold;">
-        <textarea rows="10" cols="25" placeholder="Enter tasks for Class 1"></textarea>
-      </div>
-      <div style="width: 33%; display: inline-block; vertical-align: top;">
-        <input type="text" value="Class 2" style="width: 100%; font-weight: bold;">
-        <textarea rows="10" cols="25" placeholder="Enter tasks for Class 2"></textarea>
-      </div>
-      <div style="width: 33%; display: inline-block; vertical-align: top;">
-        <input type="text" value="Class 3" style="width: 100%; font-weight: bold;">
-        <textarea rows="10" cols="25" placeholder="Enter tasks for Class 3"></textarea>
-      </div>
-      <div style="width: 33%; display: inline-block; vertical-align: top;">
-        <input type="text" value="Class 4" style="width: 100%; font-weight: bold;">
-        <textarea rows="10" cols="25" placeholder="Enter tasks for Class 4"></textarea>
-      </div>      
-    </main>
+  <div class="todo-container">
+    <div class="todo-list">
+      <input type="text" value="Class 1">
+      <textarea placeholder="Enter tasks for Class 1"></textarea>
+    </div>
+    
+    <div class="todo-list">
+      <input type="text" value="Class 2">
+      <textarea placeholder="Enter tasks for Class 2"></textarea>
+    </div>
 
-    <footer>
-      <hr />
-      <span class="text-reset">Megan Stone</span>
-      <br />
-      <a href="https://github.com/mstone13/startup">GitHub</a>
-    </footer>
+    <div class="todo-list">
+      <input type="text" value="Class 3">
+      <textarea placeholder="Enter tasks for Class 3"></textarea>
+    </div>
+    
+    <div class="todo-list">
+      <input type="text" value="Class 4">
+      <textarea placeholder="Enter tasks for Class 4"></textarea>
+    </div>  
+  </div>    
+</main>
+
+
+    <div class="footer-bottom">
+          <span class="text-reset">Megan Stone</span>
+          <a href="https://github.com/mstone13/startup">GitHub</a>
+        </div>
   </body>
 </html>

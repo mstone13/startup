@@ -1,15 +1,29 @@
 
-body {
+html, body {
   display: flex;
   flex-direction: column;
   margin: 0;
   height: 100vh;
   font-family: Arial, sans-serif;
+  line-height: 1.4;
+}
+
+main {
+    flex: 1;
+    padding: 1rem;
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
 }
 
 header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+
   background-color: rgb(79, 139, 172);
-  padding: 10px 20px;
+  padding: 1rem;
   color: white;
 }
 
@@ -55,7 +69,7 @@ nav a:hover{
     border-radius: 8px;
     display: flex;
     align-items: center;
-    /* gap: 10px; */
+    gap: 10px;
 
     flex-shrink: 0;
     margin-left: auto;
@@ -95,8 +109,20 @@ nav ul {
 
 
 footer {
-  flex: 0 30px;
-  background: hsl(180, 10%, 10%);
+  background-color: rgb(79, 139, 172);
+  display: flex;
+  flex-direction: colum;
+  align-items: center;
+  padding: 1rem;
+  font-size: 0.9rem;
+  gap: 1rem;
+  width: 100%;
+  box-sizing: border-box;
+}
+
+.footer-bottom {
+    text-align: center;
+    font-weight: bold;
 }
 
 main {
@@ -135,8 +161,8 @@ table {
   margin-top: 20px;
   background-color: #fdfdfd;
   border-radius: 8px;
-  overflow: hidden; /* keeps rounded corners */
-  box-shadow: 0 2px 8px rgba(0,0,0,0.15); /
+  overflow: hidden; 
+  box-shadow: 0 2px 8px rgba(0,0,0,0.15);
 }
 
 .calendar-container {
@@ -175,6 +201,9 @@ tr:nth-child(even) {
     display: flex;
     align-items: center;
     gap: 10px;
+    border-radius: 8px 8px 0 0;
+    padding: 0.5rem 0;
+    border-bottom: 1px solid #ccc;
 }
 
 
@@ -185,6 +214,7 @@ tr:nth-child(even) {
 }
 
 .day {
+  flex: 0 0 auto;
   min-width: 100px;
   padding: 10px;
   margin: 0 5px;

@@ -1,0 +1,67 @@
+@import url("index.css");
+
+main {
+    background-color: rgb(79, 139, 172);
+    padding: 1rem;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+}
+
+header {
+    background-color: rgb(79, 139, 172);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px;
+}
+
+#websocket-placeholder {
+    border: 2px dashed white;
+    padding: 10px;
+    width: 250px;
+    height: 50px;
+    text-align: center;
+    margin-left: auto;
+    color: white
+}
+
+.todo-container {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 1rem;
+    flex: 1;
+}
+
+.todo-list {
+    flex: 1 1 250px;
+    display: flex;
+    flex-direction: column;
+    background: white;
+    border-radius: 8px;
+    padding: 0.5rem;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+    min-height: 300px;
+}
+
+.todo-list input {
+    font-weight: bold;
+    padding: 0.5rem;
+    border: none;
+    border-bottom: 2px solid #4f8bac;
+    margin-bottom: 0.5rem;
+}
+
+.todo-list textarea {
+    flex: 1;
+    resize: none;
+    padding: 0.5rem;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+}
+
+/* .footer-bottom {
+    text-align: center;
+    font-weight: bold;
+} */
+
