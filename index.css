@@ -1,6 +1,5 @@
 
 html, body {
-  display: flex;
   flex-direction: column;
   margin: 0;
   height: 100vh;
@@ -9,38 +8,39 @@ html, body {
 }
 
 main {
-    flex: 1;
+    background-color: powderblue;
     padding: 1rem;
     display: flex;
     flex-direction: column;
-    gap: 1.5rem;
 }
 
 header {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  flex-wrap: wrap;
-
-  background-color: rgb(79, 139, 172);
-  padding: 1rem;
-  color: white;
-}
-
-
-.top-bar {
+    background-color: rgb(79, 139, 172);
     display: flex;
+    justify-content: space-between;
     align-items: center;
-    gap: 20px;
-    padding: 10px 20px;
-    flex-wrap: wrap;
+    padding-top: 40px;
+    padding-bottom: 40px;
 }
+
 
 .title {
     font-size: 35px;
     font-weight: bold;
     margin: 0;
     color: white;
+    padding-right: 50px;
+    padding-left: 30px;
+}
+
+#websocket-placeholder {
+    border: 2px dashed white;
+    padding: 10px;
+    width: 250px;
+    height: 50px;
+    text-align: center;
+    margin-left: auto;
+    color: white
 }
 
 nav a {
@@ -61,15 +61,7 @@ nav ul {
     margin: 15px 0 0 0;
 }
 
-#websocket-placeholder {
-    border: 2px dashed white;
-    padding: 10px;
-    width: 250px;
-    height: 50px;
-    text-align: center;
-    margin-left: auto;
-    color: white
-}
+
 
 .login-box{
     background: powderblue;
@@ -140,7 +132,7 @@ section:nth-child(2) {
   background-color: white;
 }
 
-@media (orientation: portrait) {
+/* @media (orientation: portrait) {
   main {
     flex-direction: column;
   }
@@ -153,7 +145,7 @@ section:nth-child(2) {
   footer {
     display: none;
   }
-}
+} */
 
 table {
   width: 100%;
