@@ -2,40 +2,41 @@
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
-    
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Daily Planner</title>
     <link rel="stylesheet" href="index.css">
   </head>
+
   <body>
-    <header style="background-color: rgb(79, 139, 172); display: flex; justify-content: space-between; align-items: center; padding: 10px;">
+    <header>
+      <div class="top-bar">
+        <h1 class="title">My Planner</h1>
 
-  <div style="display: flex; align-items: center; gap: 10px;">
-    <h1 style="margin: 0;">My Planner</h1>
-
-    <div>
-      <b>LOG IN to save events:</b>
-      <input type="text" placeholder="your@email.com" />
-      <input type="password" placeholder="password" />
-      <button type="submit">Login</button>
-      <button type="submit">Create</button>
-    </div>
-  </div>
-
-        <menu>
+      <nav>
+          <ul>
           <li><a href="index.html">Home</a></li>
           <li><a href="to_do_list.html">To-Do List</a></li>
           <li><a href="account.html">My Account</a></li>
           <li><a href="other_users.html">Friends</a></li>
-        </menu>
-      </nav>
+          </ul>
+        </nav>
 
-  <div id="websocket-placeholder" style="border: 2px dashed white; padding: 10px; width: 200px; height: 50px; text-align: center; margin-left: 40px">
-    *Notifications / Interuser communication*
-  </div>
-  
+       <div id="websocket-placeholder">
+          *Notifications / Interuser communication*
+        </div>
+
+      <div class="login-box">
+        <div>
+          <b>LOG IN to save events:</b>
+          <input type="text" placeholder="your@email.com" />
+          <input type="password" placeholder="password" />
+          <button type="submit">Login</button>
+          <button type="submit">Create</button>
+        </div>
+      </div>
+    
       <hr />
-    </header>
+      </header>
 
   
 <div class="day-carousel" style="background-color: powderblue">
@@ -50,7 +51,6 @@
     <div class="day">Sun</div>
   </div>
   <button class="next">&gt;</button>
-
 </div>
 
  <main style="background-color: powderblue">
