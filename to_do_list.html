@@ -4,31 +4,29 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>To-Do List</title>
-    <link rel="stylesheet" href="to_do_list.css"
-    <link rel="icon" href="favicon.ico" />
+    <link rel="stylesheet" href="to_do_list.css">
+    <link rel="icon" href="favicon.ico"/>
   </head>
   <body>
-    <header style="background-color: powderblue; display: flex; justify-content: space-between; align-items: center; padding: 10px;">
-      <h1>To-Do List</h1>
+    <header>
+      <h1 class="title">To-Do List</h1>
 
       <nav>
-        <menu>
+        <ul>
           <li><a href="index.html">Home</a></li>
           <li><a href="to_do_list.html">To-Do List</a></li>
           <li><a href="account.html">My Account</a></li>
           <li><a href="other_users.html">Friends</a></li>
-        </menu>
+        </ul>
       </nav>
 
-      <div id="websocket-placeholder" style="border: 2px dashed gray; padding: 10px; width: 200px; height: 50px; text-align: center; margin-left: 40px">
-    *Notifications / Interuser communication*
-  </div>
-      
-      <hr />
+      <div id="websocket-placeholder">
+        *Notifications / Interuser communication*
+      </div>
     </header>
 
     <main>
-  <h2>Class To-Do Lists:</h2>
+  <h2 style="color: white">Class To-Do Lists:</h2>
 
   <div class="todo-container">
     <div class="todo-list">

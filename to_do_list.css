@@ -1,7 +1,7 @@
 @import url("index.css");
 
 main {
-    background-color: rgb(79, 139, 172);
+    background-color: powderblue;
     padding: 1rem;
     min-height: 100vh;
     display: flex;
@@ -13,7 +13,18 @@ header {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    padding: 10px;
+    padding-top: 40px;
+    padding-bottom: 40px;
+}
+
+h1{
+  padding-right: 50px;   
+  padding-left: 30px;
+}
+
+h2{
+    color: white;
+    align-items: center;
 }
 
 #websocket-placeholder {
@@ -24,6 +35,24 @@ header {
     text-align: center;
     margin-left: auto;
     color: white
+}
+
+nav a {
+    color: white;
+    text-decoration: none;
+    font-weight: bold;
+}
+
+nav a:hover{
+    text-decoration: underline;
+}
+
+nav ul {
+    list-style: none;
+    display: flex;
+    gap: 15px;
+    padding: 0;
+    margin: 15px 0 0 0;
 }
 
 .todo-container {
@@ -59,9 +88,3 @@ header {
     border: 1px solid #ccc;
     border-radius: 4px;
 }
-
-/* .footer-bottom {
-    text-align: center;
-    font-weight: bold;
-} */
-
