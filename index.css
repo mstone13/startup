@@ -53,6 +53,14 @@ nav a:hover{
     text-decoration: underline;
 }
 
+nav ul {
+    list-style: none;
+    display: flex;
+    gap: 15px;
+    padding: 0;
+    margin: 15px 0 0 0;
+}
+
 #websocket-placeholder {
     border: 2px dashed white;
     padding: 10px;
@@ -72,7 +80,7 @@ nav a:hover{
     gap: 10px;
 
     flex-shrink: 0;
-    margin-left: auto;
+    margin-left: 20px;
     width: 300px;
     box-sizing: border-box;
 }
@@ -97,14 +105,6 @@ nav a:hover{
 
 .login-box button:hover {
   background-color: rgb(60, 110, 140);
-}
-
-nav ul {
-    list-style: none;
-    display: flex;
-    gap: 15px;
-    padding: 0;
-    margin: 15px 0 0 0;
 }
 
 
@@ -238,4 +238,8 @@ tr:nth-child(even) {
     padding: 5px 10px;
     cursor: pointer;
     border-radius: 5px;
+}
+
+#location-placeholder {
+    text-align: center;
 }
