@@ -4,44 +4,45 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>My Account</title>
-    <link rel="icon" href="favicon.ico" />
+     <link rel="stylesheet" href="account.css">
   </head>
   <body>
-    <header style="background-color: powderblue; display: flex; justify-content: space-between; align-items: center; padding: 10px;">
-      <h1>My Account</h1>
+    <header>
+      <h1 class="title">To-Do List</h1>
 
       <nav>
-        <menu>
+        <ul>
           <li><a href="index.html">Home</a></li>
           <li><a href="to_do_list.html">To-Do List</a></li>
           <li><a href="account.html">My Account</a></li>
           <li><a href="other_users.html">Friends</a></li>
-        </menu>
+        </ul>
       </nav>
 
-      <hr />
+      <div id="websocket-placeholder">
+        *Notifications / Interuser communication*
+      </div>
     </header>
 
-    <main style="background-color: rgb(79, 139, 172);">
-      <div style="border:1px solid black; padding:10px; width: 590px;">
-  <h3>*Name of User*</h3>
-  <p><b>Email:</b> *user email*</p>
-  <p><b>Username:</b> *username*</p>
-  <p><b>Member Since:</b> *date joined*</p>
-  <p><b>Friends:</b> *list of friends*</p>
-</div>
-    </main>
-
     <main>
-      <p>Don't have an account? </p>
-      <button>Create Account</button>
+      <section class="account-info">
+          <h3>*Name of User*</h3>
+          <p><b>Email:</b> *user email*</p>
+          <p><b>Username:</b> *username*</p>
+          <p><b>Member Since:</b> *date joined*</p>
+          <p><b>Friends:</b> *list of friends*</p>
+      </section>
+        
+      <section class="signup">
+        <p>Don't have an account? </p>
+        <button>Create Account</button>
+      </section>
     </main>
 
-    <footer>
-      <hr />
-      <span class="text-reset">Megan Stone</span>
-      <br />
-      <a href="https://github.com/mstone13/startup">GitHub</a>
-    </footer>
+
+    <div class="footer-bottom">
+          <span class="text-reset">Megan Stone</span>
+          <a href="https://github.com/mstone13/startup">GitHub</a>
+        </div>
   </body>
 </html>
