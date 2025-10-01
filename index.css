@@ -132,20 +132,6 @@ section:nth-child(2) {
   background-color: white;
 }
 
-/* @media (orientation: portrait) {
-  main {
-    flex-direction: column;
-  }
-}
-
-@media (max-height: 700px) {
-  header {
-    display: none;
-  }
-  footer {
-    display: none;
-  }
-} */
 
 table {
   width: 100%;
