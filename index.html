@@ -5,10 +5,10 @@
     
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Daily Planner</title>
-    <link rel="icon" href="favicon.ico" />
+    <link rel="stylesheet" href="index.css">
   </head>
   <body>
-    <header style="background-color: powderblue; display: flex; justify-content: space-between; align-items: center; padding: 10px;">
+    <header style="background-color: rgb(79, 139, 172); display: flex; justify-content: space-between; align-items: center; padding: 10px;">
 
   <div style="display: flex; align-items: center; gap: 10px;">
     <h1 style="margin: 0;">My Planner</h1>
@@ -30,28 +30,47 @@
         </menu>
       </nav>
 
-  <div id="websocket-placeholder" style="border: 2px dashed gray; padding: 10px; width: 200px; height: 50px; text-align: center; margin-left: 40px">
+  <div id="websocket-placeholder" style="border: 2px dashed white; padding: 10px; width: 200px; height: 50px; text-align: center; margin-left: 40px">
     *Notifications / Interuser communication*
   </div>
-
-      
+  
       <hr />
     </header>
 
-    <main style="background-color: rgb(79, 139, 172)">
-      <h2>Today: Wednesday, September 24th</h2>
-      <form method="get" action="play.html">
+  
+<div class="day-carousel" style="background-color: powderblue">
+  <button class="prev">&lt;</button>
+  <div class="days">
+    <div class="day">Mon</div>
+    <div class="day">Tue</div>
+    <div class="day">Wed</div>
+    <div class="day">Thu</div>
+    <div class="day">Fri</div>
+    <div class="day">Sat</div>
+    <div class="day">Sun</div>
+  </div>
+  <button class="next">&gt;</button>
 
-<div style="display: flex; align-items: flex-start; gap: 20px;">
+</div>
+
+ <main style="background-color: powderblue">
+      <!-- <h2>Today: Wednesday, September 24th</h2> -->
+
+<div class="calendar-container" style="display: flex; align-items: flex-start; gap: 20px;">
 
 <table border="1">
   <tr>
+    <thread>
     <th>Time</th>
     <th>Event</th>
     <th>Event</th>
+    <th>Event</th>
   </tr>
+  </thread>
+  <tbody>
   <tr>
     <td>6:00 AM</td>
+    <td><input type="text" placeholder="Enter event"></td>
     <td><input type="text" placeholder="Enter event"></td>
     <td><input type="text" placeholder="Enter event"></td>
   </tr>
@@ -59,9 +78,11 @@
     <td>7:00 AM</td>
     <td><input type="text" placeholder="Enter event"></td>
     <td><input type="text" placeholder="Enter event"></td>
+    <td><input type="text" placeholder="Enter event"></td>
   </tr>
   <tr>
     <td>8:00 AM</td>
+    <td><input type="text" placeholder="Enter event"></td>
     <td><input type="text" placeholder="Enter event"></td>
     <td><input type="text" placeholder="Enter event"></td>
   </tr>
@@ -69,28 +90,73 @@
     <td>9:00 AM</td>
     <td><input type="text" placeholder="Enter event"></td>
     <td><input type="text" placeholder="Enter event"></td>
+    <td><input type="text" placeholder="Enter event"></td>
   </tr>
+  <tr>
+    <td>10:00 AM</td>
+    <td><input type="text" placeholder="Enter event"></td>
+    <td><input type="text" placeholder="Enter event"></td>
+    <td><input type="text" placeholder="Enter event"></td>
+  </tr>
+  <tr>
+    <td>11:00 AM</td>
+    <td><input type="text" placeholder="Enter event"></td>
+    <td><input type="text" placeholder="Enter event"></td>
+    <td><input type="text" placeholder="Enter event"></td>
+  </tr>
+  <tr>
+    <td>12:00 PM</td>
+    <td><input type="text" placeholder="Enter event"></td>
+    <td><input type="text" placeholder="Enter event"></td>
+    <td><input type="text" placeholder="Enter event"></td>
+  </tr>
+  <tr>
+    <td>1:00 PM</td>
+    <td><input type="text" placeholder="Enter event"></td>
+    <td><input type="text" placeholder="Enter event"></td>
+    <td><input type="text" placeholder="Enter event"></td>
+  </tr>
+  <tr>
+    <td>2:00 AM</td>
+    <td><input type="text" placeholder="Enter event"></td>
+    <td><input type="text" placeholder="Enter event"></td>
+    <td><input type="text" placeholder="Enter event"></td>
+  </tr>
+  <tr>
+    <td>3:00 PM</td>
+    <td><input type="text" placeholder="Enter event"></td>
+    <td><input type="text" placeholder="Enter event"></td>
+    <td><input type="text" placeholder="Enter event"></td>
+  </tr>
+  <tr>
+    <td>4:00 PM</td>
+    <td><input type="text" placeholder="Enter event"></td>
+    <td><input type="text" placeholder="Enter event"></td>
+    <td><input type="text" placeholder="Enter event"></td>
+  </tr>
+  </tbody>
 </table>
+
+</div>
 
 <div>
 <img src="calendar-icon.png" alt="calendar" width="140">
 </div>
 
-</div>
-
-<div id="location-placeholder" style="border: 2px dashed black; padding: 15px; margin-top: 20px; text-align: center;">
-  <h3>Event Location Placeholder</h3>
-  <p>Map or location info will appear here for select events in the future.</p>
-  <button disabled>Set Location (API Placeholder)</button>
-</div>
-
     </main>
+  
 
-    <footer>
+    <footer style="background-color: rgb(79, 139, 172)">
+        <div id="location-placeholder" style="border: 2px dashed black; padding: 15px; margin-top: 20px; text-align: center; background-color: white">
+           <h3>Event Location Placeholder</h3>
+          <p>Map or location info will appear here for select events in the future.</p>
+          <button disabled>Set Location (API Placeholder)</button>
+        </div>
+      
       <hr />
       <span class="text-reset">Megan Stone</span>
       <br />
-      <a href="https://github.com/mstone13/html-startup.git">GitHub</a>
+      <a href="https://github.com/mstone13/startup">GitHub</a>
     </footer>
   </body>
 </html>

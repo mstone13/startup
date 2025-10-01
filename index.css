@@ -1,0 +1,128 @@
+
+body {
+  display: flex;
+  flex-direction: column;
+  margin: 0;
+  height: 100vh;
+}
+
+header {
+  flex: 0 80px;
+  background: hsl(223, 57%, 38%);
+}
+
+footer {
+  flex: 0 30px;
+  background: hsl(180, 10%, 10%);
+}
+
+main {
+  flex: 1;
+  display: flex;
+  flex-direction: row;
+}
+
+section:nth-child(1) {
+  flex: 1;
+  background-color: hsl(180, 10%, 80%);
+}
+section:nth-child(2) {
+  flex: 3;
+  background-color: white;
+}
+
+@media (orientation: portrait) {
+  main {
+    flex-direction: column;
+  }
+}
+
+@media (max-height: 700px) {
+  header {
+    display: none;
+  }
+  footer {
+    display: none;
+  }
+}
+
+table {
+  width: 100%;
+  border-collapse: collapse; 
+  margin-top: 20px;
+  background-color: #fdfdfd;
+  border-radius: 8px;
+  overflow: hidden; /* keeps rounded corners */
+  box-shadow: 0 2px 8px rgba(0,0,0,0.15); /
+}
+
+.calendar-container {
+    max-height: 500px;
+    overflow: auto;
+    border: 1px solid #ccc;
+    border-radius: 8px
+}
+
+.calendar-container thead th{
+    position: sticky;
+    top: 0;
+    background: #4f8bac;
+    color: white;
+    z-index: Z;
+}
+
+th, td {
+  padding: 12px;
+  text-align: center;
+  border: 1px solid #ccc;
+}
+
+th {
+  background-color: #4f8bac;
+  color: white;
+  font-weight: bold;
+  text-transform: uppercase;
+}
+
+tr:nth-child(even) {
+  background-color: #f5f9fc; 
+}
+
+.days-of-the-week{
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+
+.days{
+    display: flex;
+    overflow-x: auto;
+    scrollbar-width: none;
+}
+
+.day {
+  min-width: 100px;
+  padding: 10px;
+  margin: 0 5px;
+  background: #4f8bac;
+  text-align: center;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: 0.3s;
+  color: white;
+  font-weight: bold;
+}
+
+.day:hover {
+    background: hover;
+    color: white;
+}
+
+.days-of-the-week button{
+    background: none;
+    border: 1px solid gray;
+    padding: 5px 10px;
+    cursor: pointer;
+    border-radius: 5px;
+}
