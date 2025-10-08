@@ -56,17 +56,17 @@ nav ul {
     margin: 15px 0 0 0;
 }
 
-table {
-    padding-bottom: 50px;
+table{
+    border: 2px solid black; 
+    border-collapse: collapse; 
+    width: 100%;
 }
 
-.searchbar {
-    background-color:rgb(79, 139, 172); 
+.searchbar { 
     padding: 15px;
     border-radius: 8px;
     width: fit-content;
     margin: 30px auto 0 auto;
-    padding-top: 50px;
 }
 
 .searchbar b {
