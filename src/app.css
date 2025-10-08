@@ -1,5 +1,5 @@
 
-html, body {
+html, .body {
   flex-direction: column;
   margin: 0;
   height: 100vh;
