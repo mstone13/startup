@@ -22,8 +22,6 @@ Have trouble organizing your assignments and daily events? This site will be you
 
 ### Design
 
-![Design](designDiagram.png)
-
 The index.html page displays the user login and a table including different times throughout the day--eventually, users will be able to scroll through the entire 24 hour calendar and add events whenever they want. This page also displays notifications from other users and a third-party API to map locations to certain events.
 
 The to-do-list.html page focuses mainly on multiple to-do lists, which the user can name and connect to different classes. They then can add items, assignments, and projects to these lists to stay organized.
@@ -84,3 +82,18 @@ For this deliverable I did the following. I checked the box `[x]` and added a de
 - [x] - **Window Resizing** - Most if not all of the elements on the pages are subject to window resizing. Future debugging will bring to light any elements that need to be adjusted. 
 - [x] - **Proper CSS text content** - Proper amounts of filler text are put inside the elements, font sizing and types have been applied.
 - [x] - **Proper CSS images** - Added an image on the main page which will (in the future) display different images depending on the month of the year. This image is also subject to window resizing.
+
+## 🚀 React Phase 1: Routing deliverable
+
+For this deliverable I did the following. I checked the box `[x]` and added a description for things I completed.
+
+- [x] **Bundled using Vite** - Handles bundling, transpiling, minifying, and HMR.
+- [x] **Router** - Used to navigate between Login, Account, To-Do List, and Friends. Clicking the links will change the displayed content without reloading the page.
+- [x] **Components** - App, Login, Other_Users, To-Do List, Account components. Each component is connected to a CSS file and has its own HTML structure.
+    - [x] **Login** - Included is a mock login box, currently does not have any functionality or reactivity.
+    - [x] **Other_Users** - Displays a table with filler 'other users' information, later will allow searching for other users.
+    - [x] **To-Do List** - Displays multiple to-do lists for multiple classes
+    - [x] **Account** - Displays filler user information (email, username, friends, etc.)
+- [x] **Application Logic** - Currently holds no reactivity, not implemented yet. I expect that future edits will include user input, interacting with a backend, and holding user information. 
+
+
