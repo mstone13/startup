@@ -8,22 +8,22 @@ export function To_Do_List() {
 
       <div className="todo-container">
         <div className="todo-list">
-          <input type="text" value="Class 1" />
+          <input type="text" defaultValue="Class 1" />
           <textarea placeholder="Enter tasks for Class 1" />
         </div>
 
         <div className="todo-list">
-          <input type="text" value="Class 2" />
+          <input type="text" defaultValue="Class 2" />
           <textarea placeholder="Enter tasks for Class 2" />
         </div>
 
         <div className="todo-list">
-          <input type="text" value="Class 3" />
+          <input type="text" defaultValue="Class 3" />
           <textarea placeholder="Enter tasks for Class 3" />
         </div>
 
         <div className="todo-list">
-          <input type="text" value="Class 4" />
+          <input type="text" defaultValue="Class 4" />
           <textarea placeholder="Enter tasks for Class 4" />
         </div>
       </div>
