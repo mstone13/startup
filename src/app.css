@@ -1,5 +1,6 @@
 
-html, .body {
+html, body {
+  display: flex;
   flex-direction: column;
   margin: 0;
   height: 100vh;
@@ -8,10 +9,12 @@ html, .body {
 }
 
 main {
+    flex: 1 1 auto;
+    display: flex;
+    flex-direction: row;
     background-color: powderblue;
     padding: 1rem;
-    display: flex;
-    flex-direction: column;
+    overflow: auto;
 }
 
 header {
@@ -33,14 +36,15 @@ header {
     padding-left: 30px;
 }
 
-#websocket-placeholder {
+
+.websocket-placeholder {
     border: 2px dashed white;
     padding: 10px;
     width: 250px;
     height: 50px;
     text-align: center;
     margin-left: auto;
-    color: white
+    color: white;
 }
 
 nav a {
@@ -71,7 +75,8 @@ nav ul {
 
     flex-shrink: 0;
     margin-left: 20px;
-    width: 300px;
+    margin-right: 50px;
+
     box-sizing: border-box;
 }
 
@@ -84,7 +89,7 @@ nav ul {
 }
 
 .login-box button{
-    background-color: rgb(79, 139, 172);
+    background-color: powderblue;
     color: white;
     border: none;
     border-radius: 4px;
@@ -93,20 +98,30 @@ nav ul {
 }
 
 .login-box button:hover {
-  background-color: rgb(60, 110, 140);
+  background-color: rgb(79, 139, 172);
 }
+
+.logout-button {
+  font-family: Arial, sans-serif;
+  background: none;
+  border: none;
+  color: white;
+  font-weight: bold;
+  font-family: inherit;
+  cursor: pointer;
+  padding: 0;
+  text-decoration: none;
+  transition: color 0.2s ease;
+}
+
 
 
 footer {
   background-color: rgb(79, 139, 172);
-  display: flex;
-  flex-direction: colum;
-  align-items: center;
   padding: 1rem;
-  font-size: 0.9rem;
-  gap: 1rem;
-  width: 100%;
-  box-sizing: border-box;
+  flex-shrink: 0;
+  text-align: center;
+  color: rgb(0, 0, 0);
 }
 
 .footer-bottom {
@@ -121,19 +136,26 @@ main {
 }
 
 section:nth-child(1) {
-  flex: 1;
+  display: flex;
   background-color: hsl(180, 10%, 80%);
+  flex-direction: column;
+  flex-grow: 1;
+  flex-shrink: 1;
+  overflow: auto;
 }
 section:nth-child(2) {
-  flex: 3;
+  display: flex;
   background-color: white;
+  flex-direction: column;
+  flex-grow: 1;
+  flex-shrink: 1;
+  overflow: auto;
 }
 
 
 table {
   width: 100%;
   border-collapse: collapse; 
-  margin-top: 20px;
   background-color: #fdfdfd;
   border-radius: 8px;
   overflow: hidden; 
@@ -148,8 +170,7 @@ table {
     display: flex;
     justify-content: space-between;
     align-items: flex-start;
-    gap: 20px;
-    
+    gap: 20px;    
 }
 
 .calendar {
