@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
+import './login.css';
 
 export function Login() {
   const [username, setUsername] = useState('');
@@ -9,17 +10,20 @@ export function Login() {
   function handleSubmit(e) {
     e.preventDefault();
 
-    // simple dummy login check
     if (username === 'user' && password === 'password') {
       localStorage.setItem('isLoggedIn', 'true');
-      navigate('/'); // redirect to calendar/home
+      navigate('/');
     } else {
-      alert('Invalid credentials — try user/password');
+      alert('Invalid credentials — try user/password'); //dummy username and password for now
     }
   }
 
+  function handleCreateAccount() {
+    navigate('/account?register=true');
+  }
+
   return (
-    <div className="login-container text-center">
+    <div className="login-container">
       <h2>Login</h2>
       <form onSubmit={handleSubmit}>
         <input
@@ -34,7 +38,13 @@ export function Login() {
           value={password}
           onChange={(e) => setPassword(e.target.value)}
         />
-        <button type="submit">Log In</button>
+        <div className="buttons-row">
+          <button type="submit">Log In</button>
+
+          <button type="button" onClick={handleCreateAccount}>
+            Create Account
+          </button>
+        </div>
       </form>
     </div>
   );

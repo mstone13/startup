@@ -127,6 +127,7 @@ footer {
 .footer-bottom {
     text-align: center;
     font-weight: bold;
+    padding-top: 10px;
 }
 
 main {

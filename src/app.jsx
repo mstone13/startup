@@ -2,7 +2,7 @@ import React from 'react';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import './app.css';
 
-import { BrowserRouter, NavLink, Route, Routes, Navigate, useNavigate } from 'react-router-dom';
+import { BrowserRouter, NavLink, Route, Routes, Navigate, useNavigate, useLocation } from 'react-router-dom';
 
 import { Calendar } from './calendar/calendar.jsx';
 import { Account } from './account/account.jsx';
@@ -29,7 +29,7 @@ function Header() {
     <header>
       <h1 className="title">My Planner</h1>
       <nav>
-        <ul>
+        <ul className="options">
           <li><NavLink to="/">Home</NavLink></li>
           <li><NavLink to="/to_do_list">To-Do List</NavLink></li>
           <li><NavLink to="/account">Account</NavLink></li>
@@ -38,7 +38,7 @@ function Header() {
       </nav>
 
       <div className="websocket-placeholder">
-      *Notifications to go here*
+        *Notifications to go here*
       </div>
 
       <div className="login-box">
@@ -54,10 +54,11 @@ function Header() {
 );
 }
 
-export default function App() {
+function Layout() {
+  const location = useLocation();
+
   return (
-    <BrowserRouter>
-      <div>
+    <div>
         <Header />
 
         <main>
@@ -66,13 +67,14 @@ export default function App() {
 
             <Route path="/" element={<ProtectedRoute><Calendar /></ProtectedRoute>} />
             <Route path="/to_do_list" element={<ProtectedRoute><To_Do_List /></ProtectedRoute>} />
-            <Route path="/account" element={<ProtectedRoute><Account /></ProtectedRoute>} />
+            <Route path="/account" element={<Account />}/>
             <Route path="/other_users" element={<ProtectedRoute><Other_Users /></ProtectedRoute>} />
             <Route path="*" element={<NotFound />} />
           </Routes>
         </main>
 
         <footer>
+        {location.pathname === '/' && (
           <div
             id="location-placeholder"
             style={{
@@ -87,13 +89,21 @@ export default function App() {
             <p>Map or location info will appear here for select events in the future.</p>
             <button disabled>Set Location (API Placeholder)</button>
           </div>
+        )}
 
-          <div className="footer-bottom">
-            <span className="text-reset">Megan Stone</span>{' '}
-            <a href="https://github.com/mstone13/startup">GitHub</a>
-          </div>
-        </footer>
-      </div>
+        <div className="footer-bottom">
+          <span className="text-reset">Megan Stone</span>{' '}
+          <a href="https://github.com/mstone13/startup">GitHub</a>
+        </div>
+      </footer>
+    </div>
+  );
+}
+
+export default function App() {
+  return (
+    <BrowserRouter>
+      <Layout />
     </BrowserRouter>
   );
 }

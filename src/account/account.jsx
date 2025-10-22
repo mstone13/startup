@@ -1,7 +1,71 @@
-import React from 'react';
+import React, { useState } from 'react';
+import { useNavigate, useLocation } from 'react-router-dom';
 import './account.css';
-
 export function Account() {
+  const navigate = useNavigate();
+  let savedUser = null;
+    try {
+      const stored = localStorage.getItem('user');
+      if (stored) savedUser = JSON.parse(stored);
+    } catch (err) {
+      console.error('Invalid user data in localStorage:', err);
+      localStorage.removeItem('user');
+    }
+
+  const location = useLocation();
+  const queryParams = new URLSearchParams(location.search);
+  const isRegistering = queryParams.get('register') === true;
+  const [user, setUser] = useState(savedUser);
+  const [username, setUsername] = useState('');
+  const [email, setEmail] = useState('');
+  const [password, setPassword] = useState('');
+
+  function handleRegister(e) {
+    e.preventDefault();
+    const newUser = { username, email, password };
+    localStorage.setItem('user', JSON.stringify(newUser))
+    localStorage.setItem('isLoggedIn', 'true')
+    setUser(newUser);
+    navigate('/account')
+  }
+
+  function handleLogout() {
+    localStorage.removeItem('user');
+    localStorage.removeItem('isLoggedIn');
+    setUser(null);
+  }
+
+
+  if(!user || isRegistering){
+    return (
+      <div className="account-container">
+        <h2>Create Account!</h2>
+        <form onSubmit={handleRegister}>
+          <input
+            type="text"
+            placeholder="Username"
+            value={username}
+            onChange={(e) => setUsername(e.target.value)}
+            required
+          />
+          <input
+            type="email"
+            placeholder="Email"
+            value={email}
+            onChange={(e) => setEmail(e.target.value)}
+          />
+          <input
+            type="password"
+            placeholder="Password"
+            value={password}
+            onChange={(e) => setPassword(e.target.value)}
+          />
+          <button type="submit">Register</button>
+        </form>
+      </div>
+    )
+  }
+
   return (
     <main>
       <section className="account-info">
@@ -13,11 +77,8 @@ export function Account() {
             <div className="info-card"><b>Friends:</b> *list of friends*</div>
           </div>
       </section>
-        
-      <section className="signup">
-        <p>Don't have an account? </p>
-        <button>Create Account</button>
-      </section>
+        <button onClick={handleLogout}>Log Out</button>
+
     </main>
   );
 }
