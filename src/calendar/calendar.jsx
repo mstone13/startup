@@ -5,9 +5,22 @@ import { useState } from 'react';
 export function Calendar() {
   const [selectedDay, setSelectedDay] = useState(null)
   const daysOfWeek = ['Mon', 'Tues', 'Wed', 'Thur', 'Fri', 'Sat', 'Sun'];
+  const [newEvent, setNewEvent] = useState('');
+  const [events, setEvents] = useState({});
 
   function handleDay(day) {
     setSelectedDay(day);
+  }
+
+  function handleAddEvent() {
+    if (!selectedDay || !newEvent) return;
+
+    setEvents(prevEvents => ({
+      ...prevEvents,
+      [selectedDay] : prev[selectedDay] ? [...prevEvents[selectedDay], newEvent] : [newEvent]
+    }));
+
+    setNewEvent('');
   }
 
   return (
@@ -43,16 +56,16 @@ export function Calendar() {
             ].map(time => (
               <tr key={time}>
                 <td>{time}</td>
-                <td><input type="text" placeholder="Enter event" /></td>
-                <td><input type="text" placeholder="Enter event" /></td>
-                <td><input type="text" placeholder="Enter event" /></td>
+                {[0,1,2].map(i => (
+                  <td key={i}>
+                    {selectedDay && events[selectedDay] && events[selectedDay][i] ? events[selectedDay][i] : ''}
+                  </td>
+                ))}
               </tr>
             ))}
           </tbody>
         </table>
       </div>
-      
-
     </div>
   );
 }

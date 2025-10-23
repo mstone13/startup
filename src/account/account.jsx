@@ -38,7 +38,7 @@ export function Account() {
   // }
 
   if(user && isRegistering) {
-    navigate('/account'); // go to normal account view
+    navigate('/account');
     return null;
   }
 

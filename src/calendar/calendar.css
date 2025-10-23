@@ -1,9 +1,7 @@
 .calendar-container {
-    width: 100%;
-    background-color: powderblue;
-    text-align: center;
-    padding: 20px;
-    box-sizing: border-box;
+    display: flex;
+    flex-direction: column;
+    width: 100%
 }
 
 .calendar-wrapper {
@@ -19,7 +17,8 @@
     display: flex;               
     justify-content: center;  
     gap: 10px;                
-    padding: 10px 0;   
+    padding: 10px 0;  
+    margin-bottom: 20px; 
 }
 
 .days {
@@ -28,7 +27,7 @@
 }
 
 .day.selected {
-    background-color: darkblue;
+    background-color: rgb(55, 98, 119);
     color: white;
 }
 
