@@ -40,7 +40,7 @@ h2{
     font-size: 30px;
     margin-bottom: 15px;
     padding: 0.5rem 1rem;
-    gap: 50px;
+    gap: 20px;
 }
 
 .options-buttons div {
@@ -48,6 +48,10 @@ h2{
     padding: 5px 10px;
     border-radius: 8px;
     cursor: pointer;
+}
+
+.options-buttons input {
+    font-size: 20px;
 }
 
 nav a {
@@ -85,6 +89,7 @@ nav ul {
     box-shadow: 0 2px 5px rgba(0,0,0,0.1);
     min-height: 300px;
     max-height: 400px;
+    max-width: 300px;
 }
 
 .todo-list input {
@@ -101,4 +106,16 @@ nav ul {
     padding: 0.5rem;
     border: 1px solid #ccc;
     border-radius: 4px;
+}
+
+.task-list {
+    min-height: 240px;
+}
+
+.remove-task {
+    margin-left: 20px;
+}
+
+.task-list input {
+    margin-right: 10px;
 }
