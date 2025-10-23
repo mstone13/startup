@@ -14,27 +14,33 @@ export function Account() {
 
   const location = useLocation();
   const queryParams = new URLSearchParams(location.search);
-  const isRegistering = queryParams.get('register') === true;
+  const isRegistering = queryParams.get('register') === 'true';
+
   const [user, setUser] = useState(savedUser);
+  const [name, setName] = useState('');
   const [username, setUsername] = useState('');
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
 
   function handleRegister(e) {
     e.preventDefault();
-    const newUser = { username, email, password };
+    const newUser = { name, username, email, password };
     localStorage.setItem('user', JSON.stringify(newUser))
     localStorage.setItem('isLoggedIn', 'true')
     setUser(newUser);
-    navigate('/account')
+    navigate('/account', {replace: true });
   }
 
-  function handleLogout() {
-    localStorage.removeItem('user');
-    localStorage.removeItem('isLoggedIn');
-    setUser(null);
-  }
+  // function handleLogout() {
+  //   localStorage.removeItem('user');
+  //   localStorage.removeItem('isLoggedIn');
+  //   setUser(null);
+  // }
 
+  if(user && isRegistering) {
+    navigate('/account'); // go to normal account view
+    return null;
+  }
 
   if(!user || isRegistering){
     return (
@@ -46,6 +52,13 @@ export function Account() {
             placeholder="Username"
             value={username}
             onChange={(e) => setUsername(e.target.value)}
+            required
+          />
+          <input
+            type="name"
+            placeholder="Name"
+            value={name}
+            onChange={(e) => setName(e.target.value)}
             required
           />
           <input
@@ -69,16 +82,14 @@ export function Account() {
   return (
     <main>
       <section className="account-info">
-          <h3>*Name of User*</h3>
+          <h3>{user.name}</h3>
           <div className="info-grid">
-            <div className="info-card"><b>Email:</b> *user email*</div>
-            <div className="info-card"><b>Username:</b> *username*</div>
+            <div className="info-card"><b>Email:</b> {user.email}</div>
+            <div className="info-card"><b>Username:</b>{user.username}</div>
             <div className="info-card"><b>Member Since:</b> *date joined*</div>
             <div className="info-card"><b>Friends:</b> *list of friends*</div>
           </div>
       </section>
-        <button onClick={handleLogout}>Log Out</button>
-
     </main>
   );
 }

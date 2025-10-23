@@ -20,7 +20,8 @@ function Header() {
   const isLoggedIn = localStorage.getItem('isLoggedIn') === 'true';
 
   function handleLogout() {
-    localStorage.removeItem('isLoggedIn')
+    localStorage.removeItem('isLoggedIn');
+    localStorage.removeItem('user');
     navigate('/login');
   }
 

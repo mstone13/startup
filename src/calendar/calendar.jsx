@@ -1,20 +1,29 @@
 import React from 'react';
+import './calendar.css'
+import { useState } from 'react';
 
 export function Calendar() {
+  const [selectedDay, setSelectedDay] = useState(null)
+  const daysOfWeek = ['Mon', 'Tues', 'Wed', 'Thur', 'Fri', 'Sat', 'Sun'];
+
+  function handleDay(day) {
+    setSelectedDay(day);
+  }
+
   return (
-    <div className="container-fluid bg-secondary text-center">
-      <div className="days-of-the-week" style={{ backgroundColor: 'powderblue' }}>
-        <button className="prev">&lt;</button>
+    <div className="calendar-wrapper">
+      <div className="days-of-the-week">
         <div className="days">
-          <div className="day">Mon (Sept 29)</div>
-          <div className="day">Tue (Sept 30)</div>
-          <div className="day">Wed (Oct 1)</div>
-          <div className="day">Thu (Oct 2)</div>
-          <div className="day">Fri (Oct 3)</div>
-          <div className="day">Sat (Oct 4)</div>
-          <div className="day">Sun (Oct 5)</div>
-        </div>
-        <button className="next">&gt;</button>
+          {daysOfWeek.map(day => (
+            <div
+              key={day}
+              className={`day ${selectedDay === day ? 'selected' : ''}`}
+              onClick={() => handleDay(day)}
+              >
+                {day}
+                </div>
+              ))}
+          </div>
       </div>
 
       <div className="calendar-container" style={{ display: 'flex', alignItems: 'flex-start', gap: '20px' }}>

@@ -11,7 +11,7 @@ html, body {
 main {
     flex: 1 1 auto;
     display: flex;
-    flex-direction: row;
+    flex-direction: column;
     background-color: powderblue;
     padding: 1rem;
     overflow: auto;
@@ -166,7 +166,7 @@ table {
 .calendar-container {
     max-height: 500px;
     overflow: auto;
-    border: 1px solid #ccc;
+    border: 1px solid #000000;
     border-radius: 8px;
     display: flex;
     justify-content: space-between;
@@ -189,7 +189,7 @@ table {
 th, td {
   padding: 12px;
   text-align: center;
-  border: 1px solid #ccc;
+  border: 1px solid #000000;
 }
 
 th {
@@ -209,14 +209,11 @@ tr:nth-child(even) {
     gap: 10px;
     border-radius: 8px 8px 0 0;
     padding: 0.5rem 0;
-    border-bottom: 1px solid #ccc;
+    border-bottom: 1px solid #000000;
 }
-
 
 .days{
     display: flex;
-    overflow-x: auto;
-    scrollbar-width: none;
 }
 
 .day {
@@ -238,13 +235,6 @@ tr:nth-child(even) {
     color: white;
 }
 
-.days-of-the-week button{
-    background: none;
-    border: 1px solid gray;
-    padding: 5px 10px;
-    cursor: pointer;
-    border-radius: 5px;
-}
 
 #location-placeholder {
     text-align: center;

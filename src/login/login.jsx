@@ -11,11 +11,12 @@ export function Login() {
     e.preventDefault();
 
     if (username === 'user' && password === 'password') {
+      const dummyUser = { username: 'user', email: 'user@example.com', name: 'Demo User' };
       localStorage.setItem('isLoggedIn', 'true');
+      localStorage.setItem('user', JSON.stringify(dummyUser)); // store user info
       navigate('/');
-    } else {
-      alert('Invalid credentials — try user/password'); //dummy username and password for now
-    }
+}
+
   }
 
   function handleCreateAccount() {

@@ -1,0 +1,38 @@
+.calendar-container {
+    width: 100%;
+    background-color: powderblue;
+    text-align: center;
+    padding: 20px;
+    box-sizing: border-box;
+}
+
+.calendar-wrapper {
+    display: flex;
+    flex-direction: column;
+    width: 100%
+}
+
+.days-of-the-week {
+    background: powderblue;
+    font-size: 20px;
+
+    display: flex;               
+    justify-content: center;  
+    gap: 10px;                
+    padding: 10px 0;   
+}
+
+.days {
+    display: flex;
+    gap: 10px;
+}
+
+.day.selected {
+    background-color: darkblue;
+    color: white;
+}
+
+tbody {
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: 18px;
+}
