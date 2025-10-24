@@ -96,4 +96,9 @@ For this deliverable I did the following. I checked the box `[x]` and added a de
     - [x] **Account** - Displays filler user information (email, username, friends, etc.)
 - [x] **Application Logic** - Currently holds no reactivity, not implemented yet. I expect that future edits will include user input, interacting with a backend, and holding user information. 
 
+## 🚀 React Phase 2: Reactivity deliverable
 
+For this deliverable I used JavaScript and React so that the application almost completely works for a single user. Mock functionality was added for a few components and some placeholders remain, but I expect to get these running soon enough.
+
+- [x] **All functionality implemented or mocked out** - Although a few issues still need to be worked out, everything is mostly functional. Information is stored in local storage. `setInterval` is utilized to simulate searching for shared events with other users (not implemented yet). Login/register functionality is implemented to an extent but user information likely will not be stored yet. To use the calendar functions, click on a day of the week!
+- [x] **Hooks** - Used `useState` and `useEffect` on multiple components throughout calendar/home page, to-do list page, etc. 

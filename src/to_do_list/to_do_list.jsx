@@ -1,10 +1,21 @@
-import React, {useState} from 'react';
+import React, { useState, useEffect } from 'react';
 import './to_do_list.css';
 
 export function To_Do_List() {
 
   const [lists, setLists] = useState([])
   const [newListName, setNewListName] = useState('');
+
+  useEffect(() => {
+      const savedLists = localStorage.getItem('lists');
+      if (savedLists) {
+        setLists(JSON.parse(savedLists));
+      }
+    }, []);
+  
+  useEffect(() => {
+      localStorage.setItem('lists', JSON.stringify(lists));
+    }, [lists]);
 
   function addNewList() {
     if (!newListName.trim()) return;
@@ -79,7 +90,7 @@ export function To_Do_List() {
           onChange={(e) => setNewListName(e.target.value)}
         />
         <div className="numberOfLists">Lists: {lists.length}</div>
-        <div >Third :D</div>
+        {/* <div >Third :D</div> */}
       </div>
 
       <div className="todo-container">
@@ -122,7 +133,6 @@ export function To_Do_List() {
           </div>
         ))}
       </div>
-      
     </main>
   );
 }

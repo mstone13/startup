@@ -31,11 +31,6 @@ export function Account() {
     navigate('/account', {replace: true });
   }
 
-  // function handleLogout() {
-  //   localStorage.removeItem('user');
-  //   localStorage.removeItem('isLoggedIn');
-  //   setUser(null);
-  // }
 
   if(user && isRegistering) {
     navigate('/account');

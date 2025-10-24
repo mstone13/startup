@@ -1,6 +1,6 @@
 import React from 'react';
 import './calendar.css'
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 
 export function Calendar() {
   const [selectedDay, setSelectedDay] = useState(null)
@@ -12,6 +12,36 @@ export function Calendar() {
               '6:00 AM','7:00 AM','8:00 AM','9:00 AM','10:00 AM','11:00 AM','12:00 PM','1:00 PM',
               '2:00 PM','3:00 PM','4:00 PM','5:00 PM','6:00 PM','7:00 PM','8:00 PM','9:00 PM','10:00 PM'
             ];
+
+  const [sharedEvents, setSharedEvents] = useState([]);
+  const [statusMessage, setStatusMessage] = useState('Checking for shared events...');
+
+  // useEffect(() => {
+  //   const intervalID = setInterval(() => {
+  //     console.log('Checking for shared events...');
+
+  //     const foundEvents = [];
+
+  //     if (foundEvents.length === 0) {
+  //       setStatusMessage('No shared events found.');
+  //     } else {
+  //       setStatusMessage(`You have ${foundEvents.length} shared events.`);
+  //       setSharedEvents(foundEvents);
+  //     }
+  //   }, 5000);
+  //   return () => clearInterval(intervalId);
+  // }, []);
+
+  useEffect(() => {
+    const savedEvents = localStorage.getItem('events');
+    if (savedEvents) {
+      setEvents(JSON.parse(savedEvents));
+    }
+  }, []);
+
+  useEffect(() => {
+    localStorage.setItem('events', JSON.stringify(events));
+  }, [events]);
 
   function addEvent(time) {
     if (!selectedDay) {
@@ -105,8 +135,12 @@ export function Calendar() {
                     <button onClick={() => addEvent(time)}>Add</button>
                   </div>
                 )}
-                  
-                </td>                
+                </td> 
+                <td>
+                  {sharedEvents[time]?.length > 0
+                    ? sharedEvents[time].join(', ')
+                    : 'No shared events found.'}
+                </td>              
               </tr>
             ))}
           </tbody>
