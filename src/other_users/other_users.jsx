@@ -1,7 +1,14 @@
 import React from 'react';
 import './other_users.css';
+import { Navigate, useNavigate } from 'react-router-dom';
 
 export function Other_Users() {
+const navigate = useNavigate();
+
+function toCalendar() {
+  navigate('/');
+}
+
   return (
    <main>
       <div className="searchbar">
@@ -15,35 +22,35 @@ export function Other_Users() {
     <table>
         <thead>
           <tr>
-            <th style={{ border: '2px solid black' }}>Username</th>
-            <th style={{ border: '2px solid black' }}>Name</th>
-            <th style={{ border: '2px solid black' }}>Events with user</th>
-            <th style={{ border: '2px solid black' }}>See Events</th>
+            <th>Username</th>
+            <th>Name</th>
+            <th>Events with user</th>
+            <th>See Events</th>
           </tr>
         </thead>
         <tbody>
           <tr>
-            <td style={{ border: '2px solid black' }}>Username1</td>
-            <td style={{ border: '2px solid black' }}>James</td>
-            <td style={{ border: '2px solid black' }}>1</td>
-            <td style={{ border: '2px solid black' }}>
-              <button>Event(s)</button>
+            <td>Username1</td>
+            <td>James</td>
+            <td>1</td>
+            <td>
+              <button onClick={toCalendar}>Event(s)</button>
             </td>
           </tr>
           <tr>
-            <td style={{ border: '2px solid black' }}>Username2</td>
-            <td style={{ border: '2px solid black' }}>Alex</td>
-            <td style={{ border: '2px solid black' }}>3</td>
-            <td style={{ border: '2px solid black' }}>
-              <button>Event(s)</button>
+            <td>Username2</td>
+            <td>Alex</td>
+            <td>3</td>
+            <td>
+              <button onClick={toCalendar}>Event(s)</button>
             </td>
           </tr>
           <tr>
-            <td style={{ border: '2px solid black' }}>Username3</td>
-            <td style={{ border: '2px solid black' }}>Miranda</td>
-            <td style={{ border: '2px solid black' }}>0</td>
-            <td style={{ border: '2px solid black' }}>
-              <button>Event(s)</button>
+            <td>Username3</td>
+            <td>Miranda</td>
+            <td>0</td>
+            <td>
+              <button onClick={toCalendar}>Event(s)</button>
             </td>
           </tr>
         </tbody>
