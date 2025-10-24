@@ -14,22 +14,22 @@ export function To_Do_List() {
     setNewListName('');
   }
 
-    function removeList(id) {
-      setLists(prevLists => prevLists.filter(list => list.id !== id));
-    }
+  function removeList(id) {
+    setLists(prevLists => prevLists.filter(list => list.id !== id));
+  }
 
-    function handleTitleChange(id, newTitle) {
-      setLists(prevLists =>
-        prevLists.map(list =>
-          list.id === id ? { ...list, title: newTitle } : list
-        ));}
+  function handleTitleChange(id, newTitle) {
+    setLists(prevLists =>
+      prevLists.map(list =>
+        list.id === id ? { ...list, title: newTitle } : list
+  ));}
 
 
   function handleTaskInputChange(listId, value) {
     setLists(prevLists =>
       prevLists.map(list =>
         list.id === listId ? { ...list, newTask: value } : list
-      ));}
+   ));}
 
   function addTask(listId) {
     setLists(prevLists =>
@@ -64,9 +64,7 @@ export function To_Do_List() {
           list.id === listId
             ? { ...list, tasks: list.tasks.filter(task => task.id !== taskId) }
             : list
-        )
-      );
-    }
+        ));}
 
   return (
     <main>
@@ -81,7 +79,7 @@ export function To_Do_List() {
           onChange={(e) => setNewListName(e.target.value)}
         />
         <div className="numberOfLists">Lists: {lists.length}</div>
-        <div className="thirdButton">Third :D</div>
+        <div >Third :D</div>
       </div>
 
       <div className="todo-container">

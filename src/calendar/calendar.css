@@ -10,6 +10,7 @@
     width: 100%
 }
 
+
 .days-of-the-week {
     background: powderblue;
     font-size: 20px;
@@ -21,10 +22,18 @@
     margin-bottom: 20px; 
 }
 
+th:first-child, 
+td.first-child {
+    width: 100px;
+    text-align: left;
+}
+
+
 .days {
     display: flex;
     gap: 10px;
 }
+
 
 .day.selected {
     background-color: rgb(55, 98, 119);
