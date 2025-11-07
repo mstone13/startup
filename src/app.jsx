@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import './app.css';
 
@@ -15,15 +15,9 @@ function ProtectedRoute({ authState, children }) {
   return authState === AuthState.Authenticated ? children : <Navigate to="/login" />;
 }
 
-function Header() {
+function Header({ authState, onLogout }) {
   const navigate = useNavigate();
-  // const isLoggedIn = localStorage.getItem('isLoggedIn') === 'true';
-
-  // function handleLogout() {
-  //   localStorage.removeItem('isLoggedIn');
-  //   localStorage.removeItem('user');
-  //   navigate('/login');
-  // }
+  const isLoggedIn = authState === AuthState.Authenticated;
 
   return (
   <>
@@ -49,13 +43,12 @@ function Header() {
           <button onClick={() => navigate('/login')}>Log In</button>
         )}
       </div>
-
     </header>
   </>
 );
 }
 
-function Layout() {
+function Layout({ userName, authState, onAuthChange }) {
   const location = useLocation();
 
   return (
@@ -68,15 +61,31 @@ function Layout() {
         <main>
           <Routes>
             <Route
-            path="/login"
-            element={<Login userName={userName} authState={authState} onAuthChange={onAuthChange} />}/>
+              path="/login"
+              element={<Login userName={userName} authState={authState} onAuthChange={onAuthChange} />}
+              />
 
-            <Route path="/" element={<ProtectedRoute authState={authState}><Calendar /></ProtectedRoute>}/>
-            <Route path="/to_do_list"  element={<ProtectedRoute authState={authState}><To_Do_List /></ProtectedRoute>} />
-            <Route path="/account" element={<Account />} />
-            <Route path="/other_users" element={<ProtectedRoute authState={authState}><Other_Users /></ProtectedRoute>}/>
+            <Route
+              path="/" 
+              element={<ProtectedRoute authState={authState}><Calendar /></ProtectedRoute>}
+              />
+            <Route 
+              path="/to_do_list"   
+              element={<ProtectedRoute authState={authState}><To_Do_List /></ProtectedRoute>}
+              />
+            <Route 
+              path="/account" 
+              element={<Account />} 
+              />
+            <Route 
+              path="/other_users" 
+              element={<ProtectedRoute authState={authState}><Other_Users /></ProtectedRoute>}
+              />
 
-            <Route path="*" element={<NotFound />} />
+            <Route 
+              path="*" 
+              element={<NotFound />} 
+              />
           </Routes>
         </main>
 
@@ -112,26 +121,32 @@ export default function App() {
   const [userName, setUserName] = useState('');
 
   useEffect(() => {
-    const storedUser = localStorage.getItem('userName');
+    const storedUser = localStorage.getItem('user');
     if (storedUser) {
-      setUserName(storedUser);
+      const parsedUser = JSON.parse(storedUser);
+      setUserName(parsedUser.username);
       setAuthState(AuthState.Authenticated);
     } else {
       setAuthState(AuthState.Unauthenticated);
     }
   }, []);
-}
+
 
 function handleAuthChange(loginUserName, newState) {
     setUserName(loginUserName);
     setAuthState(newState);
+    if (newState === AuthState.Unauthenticated) {
+      localStorage.removeItem('user');
+    }
   }
 
-return (
-  <BrowserRouter>
-    <Layout userName={userName} authState={authState} onAuthChange={handleAuthChange} />
-  </BrowserRouter>
-)
+
+  return (
+    <BrowserRouter>
+      <Layout userName={userName} authState={authState} onAuthChange={handleAuthChange} />
+    </BrowserRouter>
+  );
+}
 
 function NotFound() {
   return (
