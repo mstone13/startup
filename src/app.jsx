@@ -9,9 +9,10 @@ import { Account } from './account/account.jsx';
 import { Other_Users } from './other_users/other_users.jsx';
 import { To_Do_List } from './to_do_list/to_do_list.jsx';
 import { Login } from './login/login.jsx';
-import { AuthState } from './login/authState'
+import { AuthState } from './login/authState';
 
 function ProtectedRoute({ authState, children }) {
+  if (authState === AuthState.Unknown) return null;
   return authState === AuthState.Authenticated ? children : <Navigate to="/login" />;
 }
 
@@ -38,7 +39,7 @@ function Header({ authState, onLogout }) {
 
       <div className="login-box">
         {isLoggedIn ? (
-          <button className="logout-button" onClick={handleLogout}>Log Out</button>
+          <button className="logout-button" onClick={onLogout}>Log Out</button>
         ) : (
           <button onClick={() => navigate('/login')}>Log In</button>
         )}
@@ -123,8 +124,7 @@ export default function App() {
   useEffect(() => {
     const storedUser = localStorage.getItem('user');
     if (storedUser) {
-      const parsedUser = JSON.parse(storedUser);
-      setUserName(parsedUser.username);
+      setUserName(JSON.parse(storedUser).username);
       setAuthState(AuthState.Authenticated);
     } else {
       setAuthState(AuthState.Unauthenticated);
@@ -135,7 +135,10 @@ export default function App() {
 function handleAuthChange(loginUserName, newState) {
     setUserName(loginUserName);
     setAuthState(newState);
-    if (newState === AuthState.Unauthenticated) {
+
+    if (newState === AuthState.Authenticated) {
+      localStorage.setItem('user', JSON.stringify({ username: loginUserName }));
+    } else {
       localStorage.removeItem('user');
     }
   }

@@ -1,0 +1,12 @@
+.unauthenticated-container {
+    font-size: 40px;
+    flex-direction: column;
+}
+
+.unauthenticated-container input {
+    font-size: 20px;
+}
+
+.button-row {
+    font-size: 20px;
+}

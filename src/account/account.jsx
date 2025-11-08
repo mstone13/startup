@@ -1,6 +1,8 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { useNavigate, useLocation } from 'react-router-dom';
 import './account.css';
+
+
 export function Account() {
   const navigate = useNavigate();
   let savedUser = null;
@@ -15,12 +17,19 @@ export function Account() {
   const location = useLocation();
   const queryParams = new URLSearchParams(location.search);
   const isRegistering = queryParams.get('register') === 'true';
+  
 
   const [user, setUser] = useState(savedUser);
   const [name, setName] = useState('');
   const [username, setUsername] = useState('');
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
+
+  useEffect(() => {
+    if (user && isRegistering) {
+      navigate('/account', { replace: true});
+    }
+  }, [user, isRegistering, navigate])
 
   function handleRegister(e) {
     e.preventDefault();
@@ -31,11 +40,6 @@ export function Account() {
     navigate('/account', {replace: true });
   }
 
-
-  if(user && isRegistering) {
-    navigate('/account');
-    return null;
-  }
 
   if(!user || isRegistering){
     return (

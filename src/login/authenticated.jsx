@@ -1,6 +1,6 @@
 import React from 'react';
 import { useNavigate } from 'react-router-dom';
-import './authenticated.css';
+// import './authenticated.css';
 
 export function Authenticated({ userName, onLogout }) {
   const navigate = useNavigate();
