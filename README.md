@@ -102,3 +102,13 @@ For this deliverable I used JavaScript and React so that the application almost 
 
 - [x] **All functionality implemented or mocked out** - Although a few issues still need to be worked out, everything is mostly functional. Information is stored in local storage. `setInterval` is utilized to simulate searching for shared events with other users (not implemented yet). Login/register functionality is implemented to an extent but user information likely will not be stored yet. To use the calendar functions, click on a day of the week!
 - [x] **Hooks** - Used `useState` and `useEffect` on multiple components throughout calendar/home page, to-do list page, etc. 
+
+## Service Deliverable
+
+For this deliverable I added backend endpoints that so far only holds functionality for user login and registration. Future deliverables will add more functionality such as saving events and finding other users.
+
+- [x] **Node.js/Express HTTP service** - done.
+- [x] **Static middleware for frontend** - done.
+- [x] **Calls to third party endpoint** - While I did not have the time to implement the third party call that I want (connecting location to events), I did have time to implement a simple duck image generator beneath the calendar. This was helpful for learning the process and testing my own abilities.
+- [x] **Frontend calls service endpoints** - completed with fetch function(s).
+- [x] **Supports registration, login, logout, and restricted endpoint** - As far as I can tell, these functions are mostly implemented on the frontend. Further development to come. 
