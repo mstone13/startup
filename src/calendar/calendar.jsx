@@ -1,6 +1,7 @@
 import React from 'react';
 import './calendar.css'
 import { useState, useEffect } from 'react';
+import { Duck } from './duck.jsx';
 
 export function Calendar() {
   const [selectedDay, setSelectedDay] = useState(null)
@@ -16,21 +17,6 @@ export function Calendar() {
   const [sharedEvents, setSharedEvents] = useState([]);
   const [statusMessage, setStatusMessage] = useState('Checking for shared events...');
 
-  // useEffect(() => {
-  //   const intervalID = setInterval(() => {
-  //     console.log('Checking for shared events...');
-
-  //     const foundEvents = [];
-
-  //     if (foundEvents.length === 0) {
-  //       setStatusMessage('No shared events found.');
-  //     } else {
-  //       setStatusMessage(`You have ${foundEvents.length} shared events.`);
-  //       setSharedEvents(foundEvents);
-  //     }
-  //   }, 5000);
-  //   return () => clearInterval(intervalId);
-  // }, []);
 
   useEffect(() => {
     const savedEvents = localStorage.getItem('events');
@@ -145,6 +131,9 @@ export function Calendar() {
             ))}
           </tbody>
         </table>
+      </div>
+      <div>
+        <Duck/>
       </div>
     </div>
   );

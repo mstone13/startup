@@ -2,9 +2,14 @@ import express from 'express';
 import cookieParser from 'cookie-parser';
 import bcrypt from 'bcrypt';  
 import fs from 'fs';
+import { fileURLToPath } from 'url';
+import path from 'path';
 
 const app = express();
 const port = process.argv.length > 2 ? process.argv[2] : 4000;
+
+const __filename = fileURLToPath(import.meta.url);
+const __dirname = path.dirname(__filename);
 
 app.use(express.json());
 app.use(express.static(path.join(__dirname, 'dist')));
@@ -56,7 +61,7 @@ app.get('/api/secret', (req, res) => {
   res.json({ message: `Welcome, ${username}!` });
 });
 
-app.get('*', (req, res) => {
+app.get(/.*/, (req, res) => {
   res.sendFile(path.join(__dirname, 'dist', 'index.html'));
 })
 
