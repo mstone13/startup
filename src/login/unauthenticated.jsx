@@ -1,66 +1,73 @@
-import React, { useState } from 'react';
-import './unauthenticated.css';
-import { useNavigate } from 'react-router-dom'
+import React from 'react';
+import Button from 'react-bootstrap/Button';
+import { AuthState } from '../login/authState';
 
-export function Unauthenticated({ onLogin }) {
-  const [email, setEmail] = useState('');
-  const [password, setPassword] = useState('');
-  const [errorMsg, setErrorMsg] = useState('');
-  const navigate = useNavigate();
+export function Unauthenticated(props) {
+  const [userName, setUserName] = React.useState(props.userName || '');
+  const [password, setPassword] = React.useState('');
+  const [displayError, setDisplayError] = React.useState(null);
 
-  async function handleAuth(endpoint, actionType) {
+  async function loginUser() {
+    loginOrCreate('/api/auth/login');
+  }
+
+  async function createUser() {
+    loginOrCreate('/api/auth/register'); 
+  }
+
+  async function loginOrCreate(endpoint) {
     try {
-      const response = await fetch(endpoint, { 
+      const response = await fetch(endpoint, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ username: email, password }),
+        body: JSON.stringify({ username: userName, password }),
       });
 
       if (response.ok) {
-        localStorage.setItem('userName', JSON.stringify({ username: email}));
-        
-        if (actionType === 'register') {
-          navigate('/account?register=true');
-        } else {
-        onLogin(email, AuthState.Authenticated);
-        navigate('/')
+        localStorage.setItem('user', JSON.stringify({ username: userName }));
+
+        props.onLogin(userName, AuthState.Authenticated);
+      } else {
+        const body = await response.json();
+        setDisplayError(`⚠ Error: ${body.message}`);
       }
-    } else {
-        const data = await response.json();
-        setErrorMsg(`⚠ ${data.msg}`);
-      }
-    } catch {
-      setErrorMsg('⚠ Unable to reach the server. Please try again.');
+    } catch (err) {
+      setDisplayError('⚠ Unable to reach the server. Please try again.');
     }
   }
 
   return (
-    <div className="unauthenticated-container">
-      <h2>Login or Create an Account</h2>
-
-      <input
-        type="email"
-        placeholder="Your email"
-        value={email}
-        onChange={(e) => setEmail(e.target.value)}
-      />
-      <input
-        type="password"
-        placeholder="Password"
-        value={password}
-        onChange={(e) => setPassword(e.target.value)}
-      />
-
-      <div className="button-row">
-        <button onClick={() => handleAuth('/api/auth/login', 'login')} disabled={!email || !password}>
-          Login
-        </button>
-        <button onClick={() => handleAuth('/api/auth/register', 'register')} disabled={!email || !password}>
-          Create Account
-        </button>
+    <div>
+      <div className="input-group mb-3">
+        <span className="input-group-text">@</span>
+        <input
+          className="form-control"
+          type="text"
+          value={userName}
+          onChange={(e) => setUserName(e.target.value)}
+          placeholder="your@email.com"
+        />
       </div>
 
-      {errorMsg && <p className="error">{errorMsg}</p>}
+      <div className="input-group mb-3">
+        <span className="input-group-text">🔒</span>
+        <input
+          className="form-control"
+          type="password"
+          value={password}
+          onChange={(e) => setPassword(e.target.value)}
+          placeholder="password"
+        />
+      </div>
+
+      <Button variant="primary" onClick={loginUser} disabled={!userName || !password}>
+        Login
+      </Button>
+      <Button variant="secondary" onClick={createUser} disabled={!userName || !password}>
+        Create Account
+      </Button>
+
+      {displayError && <p style={{ color: 'red', marginTop: '10px' }}>{displayError}</p>}
     </div>
   );
 }

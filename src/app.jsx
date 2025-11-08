@@ -122,9 +122,9 @@ export default function App() {
   const [userName, setUserName] = useState('');
 
   useEffect(() => {
-    const storedUser = localStorage.getItem('user');
+    const storedUser = JSON.parse(localStorage.getItem('user'));
     if (storedUser) {
-      setUserName(JSON.parse(storedUser).username);
+      setUserName(storedUser.username);
       setAuthState(AuthState.Authenticated);
     } else {
       setAuthState(AuthState.Unauthenticated);

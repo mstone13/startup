@@ -6,7 +6,7 @@ export function Duck() {
 useEffect(() => {
     async function fetchDuck() {
         try {
-            const response = await fetch('https://corsproxy.io/?https://random-d.uk/api/v2/random')
+            const response = await fetch('/api/duck');
             const data = await response.json();
             setDuckUrl(data.url);
         } catch (err) {
@@ -20,7 +20,7 @@ useEffect(() => {
 if (!duckUrl) return <p> Loading a random duck ... </p>;
 
 return (
-    <div style={{ textAlign: 'center', marginTop: 'px'}}>
+    <div style={{ textAlign: 'center', marginTop: '20px'}}>
         <h3>Random Duck!!</h3>
         <img src={duckUrl} alt="Random Duck" style={{ maxWidth: '300px', borderRadius: '8px' }} />
     </div>

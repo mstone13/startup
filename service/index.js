@@ -4,22 +4,24 @@ import bcrypt from 'bcrypt';
 import fs from 'fs';
 import { fileURLToPath } from 'url';
 import path from 'path';
+import fetch from 'node-fetch';
+import cors from 'cors';
 
 const app = express();
-const port = process.argv.length > 2 ? process.argv[2] : 4000;
+const port = process.argv[2] || 4000;
 
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
 
 app.use(express.json());
-app.use(express.static(path.join(__dirname, 'dist')));
-
-
-app.use(express.json());
 app.use(cookieParser());
-app.use(express.static('public'));
+app.use(cors({
+  origin: 'https://localhost:5173',
+  credentials: true,
+}))
 
 const users = {};
+
 
 app.post('/api/auth/register', async (req, res) => {
   const { username, password } = req.body;
@@ -61,10 +63,24 @@ app.get('/api/secret', (req, res) => {
   res.json({ message: `Welcome, ${username}!` });
 });
 
-app.get(/.*/, (req, res) => {
-  res.sendFile(path.join(__dirname, 'dist', 'index.html'));
-})
+app.get('/api/duck', async (req, res) => {
+  try {
+    const response = await fetch("https://random-d.uk/api/v2/random");
+    const data = await response.json();
+    res.json(data);
+  } catch (err) {
+    console.error("Error fetching duck:", err);
+    res.status(500).json({ error: "Failed to fetch duck" });
+  }
+});
 
-app.listen(4000, () => {
-  console.log(`Server listening on port 4000`);
+const frontendDist = path.join(__dirname, '../frontend/dist');
+app.use(express.static(frontendDist));
+
+app.get(/.*/, (req, res) => {
+  res.sendFile(path.join(frontendDist, 'index.html'));
+});
+
+app.listen(port, () => {
+  console.log(`Server listening on port ${port}`);
 });
