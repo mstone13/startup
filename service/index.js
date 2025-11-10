@@ -74,10 +74,10 @@ app.get('/api/duck', async (req, res) => {
   }
 });
 
-app.use(express.static(path.join(__dirname, 'src')));
+app.use(express.static(path.join(__dirname, '../dist')));
 
 app.use((req, res) => {
-  res.sendFile(path.join(__dirname, 'src', 'index.html'));
+  res.sendFile(path.join(__dirname, '../index.html'));
 });
 
 app.listen(port, () => {
