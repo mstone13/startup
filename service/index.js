@@ -16,7 +16,7 @@ const __dirname = path.dirname(__filename);
 app.use(express.json());
 app.use(cookieParser());
 app.use(cors({
-  origin: 'https://localhost:5173',
+  origin: 'http://localhost:5173',
   credentials: true,
 }))
 
@@ -49,7 +49,7 @@ app.post('/api/auth/login', async (req, res) => {
 });
 
 
-app.post('/api/auth/logout', (req, res) => {
+app.delete('/api/auth/logout', (req, res) => {
   res.clearCookie('username');
   res.json({ message: 'Logged out' });
 });
@@ -74,11 +74,10 @@ app.get('/api/duck', async (req, res) => {
   }
 });
 
-const frontendDist = path.join(__dirname, '../frontend/dist');
-app.use(express.static(frontendDist));
+app.use(express.static(path.join(__dirname, 'src')));
 
-app.get(/.*/, (req, res) => {
-  res.sendFile(path.join(frontendDist, 'index.html'));
+app.use((req, res) => {
+  res.sendFile(path.join(__dirname, 'src', 'index.html'));
 });
 
 app.listen(port, () => {

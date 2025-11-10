@@ -20,6 +20,17 @@ function Header({ authState, onLogout }) {
   const navigate = useNavigate();
   const isLoggedIn = authState === AuthState.Authenticated;
 
+  async function handleLogout() {
+    try {
+      await fetch('/api/auth/logout', { method: 'DELETE', credentials: 'include' });
+    } catch (err) {
+      console.error('Logout failed:', err);
+    } finally {
+      onLogout();
+      navigate('/login');
+    }
+  }
+
   return (
   <>
     <header>
@@ -39,7 +50,7 @@ function Header({ authState, onLogout }) {
 
       <div className="login-box">
         {isLoggedIn ? (
-          <button className="logout-button" onClick={onLogout}>Log Out</button>
+          <button className="logout-button" onClick={handleLogout}>Log Out</button>
         ) : (
           <button onClick={() => navigate('/login')}>Log In</button>
         )}
@@ -131,6 +142,24 @@ export default function App() {
     }
   }, []);
 
+  useEffect(() => {
+  async function checkAuth() {
+    try {
+      const response = await fetch('/api/secret', { credentials: 'include' });
+      if (response.ok) {
+        const data = await response.json();
+        setUserName(data.message.replace('Welcome, ', '').replace('!', ''));
+        setAuthState(AuthState.Authenticated);
+      } else {
+        setAuthState(AuthState.Unauthenticated);
+      }
+    } catch {
+      setAuthState(AuthState.Unauthenticated);
+    }
+  }
+
+  checkAuth();
+}, []);
 
 function handleAuthChange(loginUserName, newState) {
     setUserName(loginUserName);

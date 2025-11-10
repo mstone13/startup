@@ -7,7 +7,10 @@ export function Authenticated({ userName, onLogout }) {
 
   async function logout() {
     try {
-      await fetch(`/api/auth/logout`, { method: 'DELETE' });
+      await fetch(`/api/auth/logout`, {
+        method: 'DELETE',
+        credentials: 'include',
+      })
     } catch {
       // Assume offline
     } finally {
