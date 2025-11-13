@@ -54,8 +54,6 @@ async function updateUser(user) {
 }
 
 
-
-
 module.exports = {
   getUser,
   getUserByToken,

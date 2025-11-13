@@ -12,7 +12,7 @@ export function Authenticated({ userName, onLogout }) {
         credentials: 'include',
       })
     } catch {
-      // Assume offline
+      // Logout failed. Assuming offline.
     } finally {
       localStorage.removeItem('userName');
       onLogout();
