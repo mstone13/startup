@@ -6,6 +6,7 @@ const client = new MongoClient(url);
 const db = client.db('startup');
 const userCollection = db.collection('user');
 const eventCollection = db.collection('events');
+const todoCollection = db.collection('todo');
 
 // This will asynchronously test the connection and exit the process if it fails
 (async function testConnection() {
@@ -25,6 +26,15 @@ async function getAllEvents() {
 async function saveEvents(events) {
     await eventCollection.deleteMany({});
     return eventCollection.insertOne({ data: events });
+}
+
+async function getAllTodos() {
+    return todoCollection.find({}).toArray();
+}
+
+async function saveTodos(todos) {
+    await todoCollection.deleteMany({});
+    return todoCollection.insertOne({data: todos});
 }
 
 function getUser(email) {
@@ -53,4 +63,6 @@ module.exports = {
   updateUser,
   getAllEvents,
   saveEvents,
+  getAllTodos,
+  saveTodos,
 };

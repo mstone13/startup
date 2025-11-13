@@ -27,7 +27,6 @@ app.use(cors({
 }))
 
 
-
 app.post('/api/auth/register', async (req, res) => {
   const { username, password } = req.body;
 
@@ -133,11 +132,33 @@ app.post('/api/events', async (req, res) => {
   }
 });
 
-app.use(express.static(path.join(__dirname, '../dist')));
+// app.get('/api/lists', async (req, res) => {
+//   const lists = await DB.getAllLists(); 
+//   res.json(lists);
+// });
 
-app.use((req, res) => {
-  res.sendFile(path.join(__dirname, '../index.html'));
+app.get('/api/todos', async (req, res) =>  {
+  try {
+    const todos = await DB.getAllTodos();
+    res.json(todos[0]?.data || {});
+  } catch (err) {
+    console.error('Error in GET /api/todos:', err);
+    res.status(500).send({ error: err.message });
+  }
+})
+
+app.post('/api/todos', async (req, res) => {
+  try {
+    const todos = req.body;
+    await DB.saveTodos(todos);
+    res.sendStatus(200);
+  } catch (err) {
+    console.error('Error in POST /api/todos:', err);
+    res.status(500).send({ error: err.message });
+  }
 });
+
+app.use(express.static(path.join(__dirname, '../dist')));
 
 // app.use((_req, res) => {
 //   res.sendFile('index.html', { root: 'public' });

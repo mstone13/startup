@@ -3,19 +3,28 @@ import './to_do_list.css';
 
 export function To_Do_List() {
 
-  const [lists, setLists] = useState([])
+  const [lists, setLists] = useState([]);
   const [newListName, setNewListName] = useState('');
 
   useEffect(() => {
-      const savedLists = localStorage.getItem('lists');
-      if (savedLists) {
-        setLists(JSON.parse(savedLists));
-      }
-    }, []);
+  fetch('/api/todos')
+    .then(res => res.json())
+    .then(data => {
+      console.log('Fetched todos:', data);
+      setLists(Array.isArray(data) ? data : data.lists || []);
+    })
+    .catch(err => console.error('Error fetching todos::', err));
+}, []);
   
   useEffect(() => {
-      localStorage.setItem('lists', JSON.stringify(lists));
-    }, [lists]);
+    if (lists.length > 0) {
+      fetch('/api/todos', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(lists),
+      }).catch(err => console.error('Error saving todos:', err));
+    }
+  }, [lists]);
 
   function addNewList() {
     if (!newListName.trim()) return;
