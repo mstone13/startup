@@ -7,6 +7,12 @@ import path from 'path';
 import fetch from 'node-fetch';
 import cors from 'cors';
 
+import { createRequire } from 'module';
+const require = createRequire(import.meta.url);
+const DB = require('./database.js');
+console.log("Loaded DB functions:", Object.keys(DB));
+import  { v4 as uuidv4 } from 'uuid';
+
 const app = express();
 const port = process.argv[2] || 4000;
 
@@ -20,47 +26,79 @@ app.use(cors({
   credentials: true,
 }))
 
-const users = {};
-
+// const users = {};
 
 app.post('/api/auth/register', async (req, res) => {
   const { username, password } = req.body;
-  if (users[username]) {
-    return res.status(400).json({ message: 'User already exists' });
+
+  const existingUser = await DB.getUser(username);
+  if (existingUser) {
+    return res.status(400).json({ message: 'User already exists.'});
   }
+
   const hashedPassword = await bcrypt.hash(password, 10);
-  users[username] = { username, password: hashedPassword };
-  res.json({ message: 'Registered successfully' });
+  const token = uuidv4();
+
+  await DB.addUser({
+    email: username,
+    password: hashedPassword,
+    token,
+  });
+
+  res.cookie('token', token, {
+    httpOnly: true,
+    sameSite: 'strict',
+    secure: true,
+  });
+  res.json({ message: 'Registered successfully', username });
 });
 
 
 app.post('/api/auth/login', async (req, res) => {
   const { username, password } = req.body;
-  const user = users[username];
+  const user = await DB.getUser(username);
+
   if (!user) {
     return res.status(401).json({ message: 'User not found' });
   }
+
   const valid = await bcrypt.compare(password, user.password);
   if (!valid) {
     return res.status(401).json({ message: 'Invalid credentials' });
   }
-  res.cookie('username', username, { httpOnly: true });
+
+  const newToken = uuidv4();
+  user.token = newToken;
+  await DB.updateUser(user);
+
+  res.cookie('token', newToken, {
+    httpOnly: true,
+    sameSite: 'strict',
+    secure: true,
+  });
   res.json({ message: 'Login successful', username });
 });
 
 
-app.delete('/api/auth/logout', (req, res) => {
-  res.clearCookie('username');
+app.delete('/api/auth/logout', async (req, res) => {
+  const token = req.cookies.token;
+  const user = await DB.getUserByToken(token);
+  if (user) {
+    delete user.token;
+    await DB.updateUser(user);
+  }
+  res.clearCookie('token');
   res.json({ message: 'Logged out' });
 });
 
 
-app.get('/api/secret', (req, res) => {
-  const username = req.cookies.username;
-  if (!username) {
+app.get('/api/secret', async (req, res) => {
+  const token = req.cookies.token;
+  const user = await DB.getUserByToken(token);
+  if (!user) {
     return res.status(401).json({ message: 'Unauthorized' });
   }
-  res.json({ message: `Welcome, ${username}!` });
+  res.json({ message: `Welcome, ${user.email}!` });
 });
 
 app.get('/api/duck', async (req, res) => {
@@ -79,6 +117,10 @@ app.use(express.static(path.join(__dirname, '../dist')));
 app.use((req, res) => {
   res.sendFile(path.join(__dirname, '../index.html'));
 });
+
+// app.use((_req, res) => {
+//   res.sendFile('index.html', { root: 'public' });
+// });
 
 app.listen(port, () => {
   console.log(`Server listening on port ${port}`);
