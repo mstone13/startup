@@ -112,3 +112,9 @@ For this deliverable I added backend endpoints that so far only holds functional
 - [x] **Calls to third party endpoint** - While I did not have the time to implement the third party call that I want (connecting location to events), I did have time to implement a simple duck image generator beneath the calendar. This was helpful for learning the process and testing my own abilities.
 - [x] **Frontend calls service endpoints** - completed with fetch function(s).
 - [x] **Supports registration, login, logout, and restricted endpoint** - As far as I can tell, these functions are mostly implemented on the frontend. Further development to come. 
+
+## DB/Login deliverable
+For this deliverable, I associate events added to the calendar and items added to the to-do lists to the logged in user. All information is stored in the database.
+
+- [x] **Stores data in MongoDB** - done.
+- [x] **Use MongoDB to store credentials** - Stores user login information, calendar events, and items for to-do lists.
