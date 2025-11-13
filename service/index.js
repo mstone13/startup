@@ -5,11 +5,11 @@ import fs from 'fs';
 import { fileURLToPath } from 'url';
 import path from 'path';
 import fetch from 'node-fetch';
-import cors from 'cors';
 
 import { createRequire } from 'module';
 const require = createRequire(import.meta.url);
 const DB = require('./database.js');
+const cors = require('cors');
 console.log("Loaded DB functions:", Object.keys(DB));
 import  { v4 as uuidv4 } from 'uuid';
 
@@ -26,7 +26,7 @@ app.use(cors({
   credentials: true,
 }))
 
-// const users = {};
+
 
 app.post('/api/auth/register', async (req, res) => {
   const { username, password } = req.body;
@@ -109,6 +109,27 @@ app.get('/api/duck', async (req, res) => {
   } catch (err) {
     console.error("Error fetching duck:", err);
     res.status(500).json({ error: "Failed to fetch duck" });
+  }
+});
+
+app.get('/api/events', async (req, res) =>  {
+  try {
+    const events = await DB.getAllEvents();
+    res.json(events[0]?.data || {});
+  } catch (err) {
+    console.error('Error in GET /api/events:', err);
+    res.status(500).send({ error: err.message });
+  }
+})
+
+app.post('/api/events', async (req, res) => {
+  try {
+    const events = req.body;
+    await DB.saveEvents(events);
+    res.sendStatus(200);
+  } catch (err) {
+    console.error('Error in POST /api/events:', err);
+    res.status(500).send({ error: err.message });
   }
 });
 

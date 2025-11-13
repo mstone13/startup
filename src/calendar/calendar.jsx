@@ -19,11 +19,21 @@ export function Calendar() {
 
 
   useEffect(() => {
-    const savedEvents = localStorage.getItem('events');
-    if (savedEvents) {
-      setEvents(JSON.parse(savedEvents));
-    }
+    fetch('http://localhost:4000/api/events')
+      .then(res => res.json())
+      .then(data => setEvents(data))
+      .catch(err => console.error('Error fetching events:', err));
   }, []);
+
+  useEffect(() => {
+  if (Object.keys(events).length > 0) {
+    fetch('http://localhost:4000/api/events', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify(events),
+    }).catch(err => console.error('Error saving events:', err));
+  }
+}, [events]);
 
   useEffect(() => {
     localStorage.setItem('events', JSON.stringify(events));
