@@ -14,7 +14,7 @@ console.log("Loaded DB functions:", Object.keys(DB));
 import  { v4 as uuidv4 } from 'uuid';
 
 const app = express();
-const port = process.argv[2] || 4000;
+const port = process.argv[2] || 5173;
 
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
@@ -122,6 +122,7 @@ app.get('/api/events', async (req, res) =>  {
 })
 
 app.post('/api/events', async (req, res) => {
+  console.log('inner');
   try {
     const events = req.body;
     await DB.saveEvents(events);

@@ -17,9 +17,26 @@ export function Calendar() {
   const [sharedEvents, setSharedEvents] = useState([]);
   const [statusMessage, setStatusMessage] = useState('Checking for shared events...');
 
+useEffect(() => {
+    console.log('in new get');
+    async function fetchEvents() {
+        try {
+            const response = await fetch('/api/events')
+      .then(res => res.json())
+      .then(data => setEvents(data));
+            //const data = await response.json();
+            //setDuckUrl(data.url);
+        } catch (err) {
+            console.error('Error fetching events:', err);
+        }
+    }
+
+    fetchEvents();
+}, []);
 
   useEffect(() => {
-    fetch('http://localhost:4000/api/events')
+    console.log('in get');
+    fetch(`/api/events`)
       .then(res => res.json())
       .then(data => setEvents(data))
       .catch(err => console.error('Error fetching events:', err));
@@ -27,7 +44,7 @@ export function Calendar() {
 
   useEffect(() => {
   if (Object.keys(events).length > 0) {
-    fetch('http://localhost:4000/api/events', {
+    fetch(`/api/events`, {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify(events),
@@ -39,11 +56,13 @@ export function Calendar() {
     localStorage.setItem('events', JSON.stringify(events));
   }, [events]);
 
-  function addEvent(time) {
+  async function addEvent(time) {
     if (!selectedDay) {
       alert('Select a day first!');
       return;
     }
+
+    console.log('testing addevent');
 
     const newEvent = inputValues[time]?.trim();
     if (!newEvent.trim()) return;
@@ -55,8 +74,6 @@ export function Calendar() {
       updated[selectedDay][time].push(newEvent.trim());
       return updated;
     });
-
-    setInputValues(prev => ({ ...prev, [time]: ''}))
   }
 
   function deleteEvent(day, time, index) {
