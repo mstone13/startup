@@ -1,26 +1,21 @@
-import express from 'express';
-import cookieParser from 'cookie-parser';
-import bcrypt from 'bcrypt';  
-import fs from 'fs';
-import { fileURLToPath } from 'url';
-import path from 'path';
-import fetch from 'node-fetch';
-
-import { createRequire } from 'module';
-const require = createRequire(import.meta.url);
-const DB = require('./database.js');
-const cors = require('cors');
-console.log("Loaded DB functions:", Object.keys(DB));
-import  { v4 as uuidv4 } from 'uuid';
-
+const cookieParser = require('cookie-parser');
+const bcrypt = require('bcryptjs');
+const express = require('express');
+const uuid = require('uuid');
 const app = express();
-const port = process.argv[2] || 5173;
+const DB = require('./database.js');
 
-const __filename = fileURLToPath(import.meta.url);
-const __dirname = path.dirname(__filename);
+const fetch = require('node-fetch');
+const cors = require('cors');
+
+console.log("Loaded DB functions:", Object.keys(DB));
+
+const port = process.argv.length > 2 ? process.argv[2] : 4000;
+
 
 app.use(express.json());
 app.use(cookieParser());
+app.use(express.static('public'));
 app.use(cors({
   origin: 'http://localhost:5173',
   credentials: true,
@@ -36,7 +31,7 @@ app.post('/api/auth/register', async (req, res) => {
   }
 
   const hashedPassword = await bcrypt.hash(password, 10);
-  const token = uuidv4();
+  const token = uuid.v4();
 
   await DB.addUser({
     email: username,
@@ -66,7 +61,7 @@ app.post('/api/auth/login', async (req, res) => {
     return res.status(401).json({ message: 'Invalid credentials' });
   }
 
-  const newToken = uuidv4();
+  const newToken = uuid.v4();
   user.token = newToken;
   await DB.updateUser(user);
 
@@ -133,10 +128,6 @@ app.post('/api/events', async (req, res) => {
   }
 });
 
-// app.get('/api/lists', async (req, res) => {
-//   const lists = await DB.getAllLists(); 
-//   res.json(lists);
-// });
 
 app.get('/api/todos', async (req, res) =>  {
   try {
@@ -159,12 +150,16 @@ app.post('/api/todos', async (req, res) => {
   }
 });
 
-app.use(express.static(path.join(__dirname, '../dist')));
+app.use(function (err, req, res, next) {
+  res.status(500).send({ type: err.name, message: err.message });
+});
+app.use((_req, res) => {
+  res.sendFile('index.html', { root: 'public' });
+});
 
-// app.use((_req, res) => {
-//   res.sendFile('index.html', { root: 'public' });
-// });
 
-app.listen(port, () => {
-  console.log(`Server listening on port ${port}`);
+
+
+const httpService = app.listen(port, () => {
+  console.log(`Listening on port ${port}`);
 });
