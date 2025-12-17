@@ -136,3 +136,46 @@ Initial changes were made to the index.html and to_do_list.html files. I also re
       - Pending: initial state, neither fulfilled nor rejected
       - Fulfilled: meaning that the operation was completed successfully
       - Rejected: meaning that the operation failed
+
+**FINAL EXAM NOTES**
+- *Default Ports*
+  - HTTPS: 443
+  - HTTP: 80
+  - SSH: 22
+ 
+- *HTTP Status Codes*
+  - 300: The request has more than one possible response, and the client needs to choose one of them to proceed
+  - 400: Bad Request, the server cannot or will not process the request becasue something is wrong on the client's end
+  - 500: Something went wrong on the website's server. Many possible causes. The server has encountered an unexpected condition or configuration problem that prevents it from filling the request made by the client.
+
+- *HTTP Header*
+  - Content-type: indicates the media type of the resource sent in the HTTP message body
+ 
+- *Cookie Types*
+  -A cookie (also known as a web cookie or browser cookie) is a small piece of data a server sends to a user's web browser. The browser may store cookies, create new cookies, modify existing ones, and send them back to the same server with later requests. Cookies enable web applications to store limited amounts of data and remember state information
+  - Secure cookie: meaning the browser will only send it over an encrypted HTTPS connection, preventing attackers from intercepting sensitive data (like session IDs) during transmission and protecting against man-in-the-middle attacks
+  - Http-only cookie: a cookie with a special flag that instructs the web browser to prevent client-side scripts, such as JavaScript, from accessing it. Its primary purpose is to mitigate the risk of Cross-Site Scripting (XSS) attacks
+  - Same-site cookie: a security feature that tells a browser when to send a cookie with cross-site requests, primarily to prevent Cross-Site Request Forgery (CSRF) attacks by limiting cookie sharing between different websites, ensuring cookies are mostly sent only to the site that set them (first-party)
+ 
+- *Important Acronyms*
+  - JSX: JavaScript XML
+  - JS: JavaScript
+  - AWS: Amazon Web Services
+  - NPM: Node Package Manager
+  - NVM: Non-Volatile Memory
+ 
+- *React*
+  - useState: lets you add a state variable to your component. Accepts an initial state and returns the current state and a function that updates the state. (must import)
+  - Hooks: allow functions to have access to state and other React features without using classes. They provide a more direct API to React component like props, state, context, refs, and lifecycle. (must import)
+    - State Hook: a built-in function that allows you to add state variables to functional components. Lets a component remember information like user input. 
+    - Context Hook: lets a component receive information from distant parents without passing it as props. 
+    - Ref Hook: let a component hold some information that isn’t used for rendering, like a DOM node or a timeout ID. Unlike with state, updating a ref does not re-render your component. Refs are an “escape hatch” from the React paradigm.
+    - Effect Hook: let a component connect to and synchronize with external systems. This includes dealing with network, browser DOM, animations, widgets written using a different UI library, and other non-React code.
+    - Performance Hook: A common way to optimize re-rendering performance is to skip unnecessary work. For example, you can tell React to reuse a cached calculation or to skip a re-render if the data has not changed since the previous render.
+   
+- *What does it do?*
+  - Package.json: a special file that describes your Node.js project. It contains information about your app, such as its name, version, dependencies, scripts, and more.This file is essential for managing and sharing Node.js projects, especially when using npm (Node Package Manager).
+  - Fetch function: a modern, promise-based JavaScript method used to make asynchronous network requests to retrieve resources—such as JSON data, HTML, images, or files—from a server or API. Starts the process of fetching a resource from a server. Returns a promise that resolves to a response object.
+  - Node.js: lets you execute JavaScript code outside of a web browser, enabling server-side development with JavaScript.
+  - Pm2: is a popular, production-ready process manager for Node.js applications that keeps them running continuously, manages restarts, handles clustering for performance, provides real-time monitoring, logging, and ensures apps start automatically on server reboots, preventing downtime and simplifying deployment
+  - Vite: a fast, next-generation frontend build tool that dramatically speeds up web development by providing an instant development server with lightning-fast Hot Module Replacement (HMR) and optimized production builds using Rollup, handling modern syntax (TS, JSX, Vue/Svelte) out-of-the-box, and leveraging native ES modules for blazing-fast starts and updates
